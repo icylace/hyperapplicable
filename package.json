@@ -1,0 +1,41 @@
+{
+  "name": "hyperapplicable",
+  "version": "0.0.0",
+  "description": "A utility library for Hyperapp.",
+  "main": "./dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/icylace/hyperapplicable.git"
+  },
+  "author": "Ron Martinez <ramartin.net@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/icylace/hyperapplicable/issues"
+  },
+  "homepage": "https://github.com/icylace/hyperapplicable#readme",
+  "scripts": {
+    "build:dev": "./task.sh build:dev",
+    "build:prod": "./task.sh build:prod",
+    "check": "./task.sh check",
+    "clean": "./task.sh clean",
+    "lint": "./task.sh lint",
+    "reinstall": "./task.sh reinstall",
+    "release": "./task.sh release",
+    "test": "./task.sh test"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.4.1",
+    "@typescript-eslint/eslint-plugin": "^5.19.0",
+    "@typescript-eslint/parser": "^5.19.0",
+    "eslint": "^8.13.0",
+    "fast-check": "^2.24.0",
+    "jest": "^27.5.1",
+    "rollup": "^2.70.2",
+    "terser": "^5.12.1",
+    "ts-jest": "^27.1.4",
+    "typescript": "^4.6.3"
+  },
+  "dependencies": {
+    "hyperapp": "^2.0.22"
+  }
+}
