@@ -34,7 +34,7 @@ type CustomProps<T, S, P> = CustomPayloads<S, P> & T
 // An effecter is where side effects and any additional dispatching may occur.
 type Effecter<S, P> = (dispatch: Dispatch<S>, payload: P) => void | Promise<void>
 
-type Reaction<S, P = any> = Action<S, P> | [action: Action<S, P>, payload: P]
+type Reaction<S, P = any> = Action<S, P> | ActionWithPayload<S, P>
 
 type StateFormat<S, P = any> = S | StateWithEffects<S, P>
 
