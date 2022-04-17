@@ -1,6 +1,5 @@
 export * from "./box"
 export * from "./content"
-export * from "./fader"
 export * from "./handleWith"
 export * from "./isAction"
 export * from "./next"
