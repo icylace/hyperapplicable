@@ -2,17 +2,29 @@
   "name": "hyperapplicable",
   "version": "0.1.0",
   "description": "A utility library for Hyperapp.",
-  "main": "./dist/index.js",
+  "keywords": [
+    "eyepiece"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/icylace/hyperapplicable",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/icylace/hyperapplicable.git"
   },
-  "author": "Ron Martinez <ramartin.net@gmail.com>",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/icylace/hyperapplicable/issues"
+  "bugs": "https://github.com/icylace/hyperapplicable/issues",
+  "author": {
+    "name": "Ron Martinez",
+    "email": "ramartin.net@gmail.com",
+    "url": "https://ramartin.net/"
   },
-  "homepage": "https://github.com/icylace/hyperapplicable#readme",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "browser": "./dist/index.esm.js",
+  "unpkg": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "build:dev": "./task.sh build:dev",
     "build:prod": "./task.sh build:prod",
@@ -22,6 +34,9 @@
     "reinstall": "./task.sh reinstall",
     "release": "./task.sh release",
     "test": "./task.sh test"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "devDependencies": {
     "@types/jest": "^27.4.1",
