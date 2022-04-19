@@ -1,5 +1,3 @@
-"use strict"
-
 // https://eslint.org/docs/rules/
 
 // https://github.com/sanctuary-js/sanctuary-style

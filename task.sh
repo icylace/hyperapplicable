@@ -199,6 +199,8 @@ task:reinstall() {
 
 # https://github.com/sindresorhus/np#release-script
 task:release() {
+  task:build:prod
+
   echo
   echo "Releasing..."
   np --no-2fa

@@ -5,11 +5,11 @@
   "keywords": [
     "eyepiece"
   ],
-  "license": "ISC",
+  "license": "MIT",
   "homepage": "https://github.com/icylace/hyperapplicable",
   "repository": {
     "type": "git",
-    "url": "https://github.com/icylace/hyperapplicable"
+    "url": "git+https://github.com/icylace/hyperapplicable.git"
   },
   "bugs": "https://github.com/icylace/hyperapplicable/issues",
   "author": {

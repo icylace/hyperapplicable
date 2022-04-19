@@ -13,14 +13,11 @@ const unite = <S, P = any>(
   if (!Array.isArray(stateForm)) {
     return transform(stateForm, payload)
   }
-
   const [state, ...effects] = stateForm
   const nextStateForm = transform(state, payload)
-
   if (!Array.isArray(nextStateForm)) {
     return [nextStateForm, ...effects]
   }
-
   const [nextState, ...nextEffects] = nextStateForm
   return [nextState, ...effects, ...nextEffects]
 }
