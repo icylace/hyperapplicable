@@ -20,11 +20,11 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/index.js",
-  "browser": "./dist/index.esm.js",
-  "unpkg": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "./dist/hyperapplicable.es.js",
+  "browser": "./dist/hyperapplicable.es.js",
+  "unpkg": "./dist/hyperapplicable.es.js",
+  "module": "./dist/hyperapplicable.es.js",
+  "types": "./dist/hyperapplicable.d.ts",
   "scripts": {
     "build": "./task.sh build",
     "check": "./task.sh check",
