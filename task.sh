@@ -16,12 +16,12 @@ update_json() {
 
 task:index() {
   local tasks=(
-    'build:dev'
-    'build:prod'
+    'build'
     'check'
     'clean'
-    'clean:all'
+    'dev'
     'lint'
+    'preview'
     'reinstall'
     'release'
     'reset'
@@ -37,58 +37,23 @@ task:index() {
 
 # ------------------------------------------------------------------------------
 
-# task:build() {
-#   npx tsc && npx vite build
-# }
-
-# ------------------------------------------------------------------------------
-
-task:build:dev() {
-  task:clean
-
-  echo
-  echo "Compiling TypeScript for development..."
-  npx tsc --build
-
-  # Exit if errors found.
-  [ $? != 0 ] && return
-
-  npx rollup --config
-
-  echo
-  echo "Copying compiled JavaScript to the distribution folder..."
-  # https://stackoverflow.com/a/1313688/1935675
-  rsync --archive ./output/typescript/ ./dist --exclude=tsconfig.tsbuildinfo
-}
-
-# ------------------------------------------------------------------------------
-
-task:build:prod() {
+task:build() {
   task:clean
 
   echo
   echo "Compiling TypeScript for production..."
-  npx tsc --build --incremental false
-
-  # Exit if errors found.
-  [ $? != 0 ] && return
-
-  npx rollup --config --environment prod
+  npx vite build
 
   echo
-  echo "Copying compiled JavaScript to the distribution folder..."
-  # https://stackoverflow.com/a/1313688
-  rsync --archive ./output/typescript/ ./dist --exclude=tsconfig.tsbuildinfo
+  echo "Generating types definition file..."
+  npx tsup ./src/lib/hyperapplicable.ts --dts-only
+  # npx tsup ./src/lib/hyperapplicable.ts --dts-only --legacy-output
+  # https://github.com/vitejs/vite/issues/3461#issuecomment-857125201
 
   echo
   echo "Minifying and gzipping ES modules..."
-  npx terser --ecma 6 --compress --mangle --module --output ./dist/index.esm.min.js -- ./dist/index.esm.js
-  gzip --best --to-stdout ./dist/index.esm.min.js > ./dist/index.esm.min.js.gz
-
-  # echo
-  # echo "Minifying and gzipping UMD modules..."
-  # npx terser --ecma 6 --compress --mangle --output ./dist/index.umd.min.js -- ./dist/index.umd.js
-  # gzip --best --to-stdout ./dist/index.umd.min.js > ./dist/index.umd.min.js.gz
+  npx terser --ecma 6 --compress --mangle --module --output ./dist/hyperapplicable.es.min.js -- ./dist/hyperapplicable.es.js
+  gzip --best --to-stdout ./dist/hyperapplicable.es.min.js > ./dist/hyperapplicable.es.min.js.gz
 }
 
 # ------------------------------------------------------------------------------
@@ -104,16 +69,13 @@ task:check() {
 task:clean() {
   echo
   echo "Cleaning the distribution folder..."
-  rm -fr ./dist && mkdir ./dist
+  rm -fr ./dist
 }
 
 # ------------------------------------------------------------------------------
 
-task:clean:all() {
-  task:clean
-  echo
-  echo "Cleaning the intermiediary output folder..."
-  rm -fr ./output && mkdir ./output
+task:dev() {
+  npx vite
 }
 
 # ------------------------------------------------------------------------------
@@ -126,9 +88,9 @@ task:lint() {
 
 # ------------------------------------------------------------------------------
 
-# task:preview() {
-#   npx vite preview
-# }
+task:preview() {
+  npx vite preview
+}
 
 # ------------------------------------------------------------------------------
 
@@ -138,7 +100,6 @@ task:reinstall() {
 
   rm ./package-lock.json
   rm -fr ./node_modules
-  rm -fr ./output
 
   update_json '.dependencies = {} | .devDependencies = {}' ./package.json
 
@@ -147,14 +108,7 @@ task:reinstall() {
   # Language
   dev_modules+=('typescript')
   dev_modules+=('terser')
-
-  # CSS
-  # dev_modules+=('postcss')
-  # dev_modules+=('cssnano')
-  # dev_modules+=('postcss-cli')
-  # dev_modules+=('postcss-import')
-  # dev_modules+=('postcss-reporter')
-  # dev_modules+=('postcss-preset-env')
+  dev_modules+=('tsup')
 
   # Linting
   dev_modules+=('eslint')
@@ -179,18 +133,13 @@ task:reinstall() {
 
   # Building
   dev_modules+=('rollup')
-  # dev_modules+=('vite')
+  dev_modules+=('vite')
 
   npm install --save-dev "${dev_modules[@]}"
 
   local modules=()
 
-  # modules+=('@fortawesome/fontawesome-free')
-  # modules+=('remeda')
-  # modules+=('axios')
   modules+=('hyperapp')
-  # modules+=('eyepiece')
-  # modules+=('elix')
 
   npm install --save "${modules[@]}"
 }
@@ -199,8 +148,7 @@ task:reinstall() {
 
 # https://github.com/sindresorhus/np#release-script
 task:release() {
-  task:build:prod
-
+  task:build
   echo
   echo "Releasing..."
   np --no-2fa
@@ -216,6 +164,7 @@ task:reset() {
 # ------------------------------------------------------------------------------
 
 task:test() {
+  # TODO:
   return
   # npx jest
 }
