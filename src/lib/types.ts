@@ -11,7 +11,7 @@ import type {
 
 export type {
   ActionWithPayload,
-  ContentView,
+  Content,
   CustomProps,
   Effecter,
   Reaction,
@@ -27,7 +27,7 @@ export type {
 
 type ActionWithPayload<S, P = any> = [action: Action<S, P>, payload: P]
 
-type ContentView<S> = MaybeVNode<S> | View<S>
+type Content<S> = MaybeVNode<S> | readonly MaybeVNode<S>[]
 
 type CustomProps<T, S, P> = CustomPayloads<S, P> & T
 

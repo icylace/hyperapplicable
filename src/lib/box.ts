@@ -1,8 +1,9 @@
-import { ClassProp, MaybeVNode, VNode, h } from "hyperapp"
+import { ClassProp, VNode, h } from "hyperapp"
+import type { Content } from "./types"
 
 export { box }
 
 // -----------------------------------------------------------------------------
 
-const box = <S>(classes: ClassProp, contents: MaybeVNode<S> | readonly MaybeVNode<S>[]): VNode<S> =>
-  h("div", { class: classes }, contents)
+const box = <S>(classes: ClassProp, content: Content<S>): VNode<S> =>
+  h("div", { class: classes }, content)
