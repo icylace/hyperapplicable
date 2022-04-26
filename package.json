@@ -20,7 +20,7 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/hyperapplicable.es.js",
+  "main": "./dist/hyperapplicable.umd.js",
   "browser": "./dist/hyperapplicable.es.js",
   "unpkg": "./dist/hyperapplicable.es.js",
   "module": "./dist/hyperapplicable.es.js",

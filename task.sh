@@ -50,10 +50,10 @@ task:build() {
   # npx tsup ./src/lib/hyperapplicable.ts --dts-only --legacy-output
   # https://github.com/vitejs/vite/issues/3461#issuecomment-857125201
 
-  echo
-  echo "Minifying and gzipping ES modules..."
-  npx terser --ecma 6 --compress --mangle --module --output ./dist/hyperapplicable.es.min.js -- ./dist/hyperapplicable.es.js
-  gzip --best --to-stdout ./dist/hyperapplicable.es.min.js > ./dist/hyperapplicable.es.min.js.gz
+  # echo
+  # echo "Minifying and gzipping ES modules..."
+  # npx terser --ecma 6 --compress --mangle --module --output ./dist/hyperapplicable.es.min.js -- ./dist/hyperapplicable.es.js
+  # gzip --best --to-stdout ./dist/hyperapplicable.es.min.js > ./dist/hyperapplicable.es.min.js.gz
 }
 
 # ------------------------------------------------------------------------------
