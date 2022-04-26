@@ -25,6 +25,12 @@
   "unpkg": "./dist/hyperapplicable.es.js",
   "module": "./dist/hyperapplicable.es.js",
   "types": "./dist/hyperapplicable.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/hyperapplicable.es.js",
+      "require": "./dist/hyperapplicable.umd.js"
+    }
+  },
   "scripts": {
     "build": "./task.sh build",
     "check": "./task.sh check",
