@@ -1,11 +1,11 @@
 import { MaybeVNode, VNode, text } from "hyperapp"
 import type { Content } from "./types"
 
-export { content, isContent, isVNode }
+export { contentNode, isContent, isVNode }
 
 // -----------------------------------------------------------------------------
 
-const content = <S>(x: Content<S>): MaybeVNode<S> | readonly MaybeVNode<S>[] =>
+const contentNode = <S>(x: Content<S>): MaybeVNode<S> | readonly MaybeVNode<S>[] =>
   typeof x === "number" || typeof x === "string" ? text(x) : x
 
 const isContent = <S>(x: unknown): x is Content<S> =>
