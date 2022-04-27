@@ -27,7 +27,7 @@ export type {
 
 type ActionWithPayload<S, P = any> = [action: Action<S, P>, payload: P]
 
-type Content<S> = MaybeVNode<S> | readonly MaybeVNode<S>[]
+type Content<S> = number | string | MaybeVNode<S> | readonly MaybeVNode<S>[]
 
 type CustomProps<T, S, P> = CustomPayloads<S, P> & T
 
