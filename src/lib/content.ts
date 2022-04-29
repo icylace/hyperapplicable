@@ -21,7 +21,4 @@ const isVNode = <S>(x: unknown): x is VNode<S> =>
 const vista =
   <S>(xs: readonly (Content<S> | View<S>)[]) =>
     (state: S): MaybeVNode<S>[] =>
-      xs.reduce((nodes, x) => [
-        ...nodes,
-        typeof x === "function" ? x(state) : contentNode(x),
-      ], [] as MaybeVNode<S>[])
+      xs.map((x) => typeof x === "function" ? x(state) : contentNode(x))
