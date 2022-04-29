@@ -5,14 +5,13 @@ export { contentNode, isContent, isVNode }
 
 // -----------------------------------------------------------------------------
 
-const contentNode = <S>(x: Content<S>): MaybeVNode<S> | readonly MaybeVNode<S>[] =>
+const contentNode = <S>(x: Content<S>): MaybeVNode<S> =>
   typeof x === "number" || typeof x === "string" ? text(x) : x
 
 const isContent = <S>(x: unknown): x is Content<S> =>
   typeof x === "number"
   || typeof x === "string"
   || x == null
-  || Array.isArray(x)
   || typeof x === "boolean"
   || isVNode(x)
 

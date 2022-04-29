@@ -6,5 +6,5 @@ export { box }
 
 // -----------------------------------------------------------------------------
 
-const box = <S>(classes: ClassProp, content: Content<S>): VNode<S> =>
-  h("div", { class: classes }, contentNode(content))
+const box = <S>(classProp: ClassProp, content: Content<S>): VNode<S> =>
+  h("div", { class: classProp }, contentNode(content))
