@@ -12,7 +12,7 @@ import type {
 export type {
   ActionWithPayload,
   Content,
-  ContentViews,
+  Contents,
   CustomProps,
   Effecter,
   Reaction,
@@ -29,8 +29,7 @@ export type {
 type ActionWithPayload<S, P = any> = [action: Action<S, P>, payload: P]
 
 type Content<S> = number | string | MaybeVNode<S>
-
-type ContentViews<S> = readonly (Content<S> | View<S>)[]
+type Contents<S> = Content<S> | View<S> | (Content<S> | View<S>)[]
 
 type CustomProps<T, S, P> = CustomPayloads<S, P> & T
 
