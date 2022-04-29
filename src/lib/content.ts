@@ -1,7 +1,7 @@
 import { MaybeVNode, VNode, text } from "hyperapp"
-import type { Content } from "./types"
+import type { Content, View } from "./types"
 
-export { contentNode, isContent, isVNode }
+export { contentNode, isContent, isVNode, vista }
 
 // -----------------------------------------------------------------------------
 
@@ -17,3 +17,11 @@ const isContent = <S>(x: unknown): x is Content<S> =>
 
 const isVNode = <S>(x: unknown): x is VNode<S> =>
   x != null && typeof x === "object" && "node" in x
+
+const vista =
+  <S>(xs: readonly (Content<S> | View<S>)[]) =>
+    (state: S): MaybeVNode<S>[] =>
+      xs.reduce((nodes, x) => [
+        ...nodes,
+        typeof x === "function" ? x(state) : contentNode(x),
+      ], [] as MaybeVNode<S>[])
