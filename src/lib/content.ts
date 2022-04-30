@@ -13,10 +13,10 @@ const contentView = <S>(view: Content<S> | View<S>) => (state: S): MaybeVNode<S>
 
 const isContent = <S>(x: unknown): x is Content<S> =>
   typeof x === "number"
-  || typeof x === "string"
-  || x == null
-  || typeof x === "boolean"
-  || isVNode(x)
+    || typeof x === "string"
+    || x == null
+    || typeof x === "boolean"
+    || isVNode(x)
 
 const isVNode = <S>(x: unknown): x is VNode<S> =>
   x != null && typeof x === "object" && "node" in x

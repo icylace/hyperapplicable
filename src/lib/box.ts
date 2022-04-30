@@ -6,5 +6,9 @@ export { box }
 
 // -----------------------------------------------------------------------------
 
-const box = <S>(classProp: ClassProp, content: Content<S>): VNode<S> =>
-  h("div", { class: classProp }, contentNode(content))
+const box = <S>(classProp: ClassProp, content: Content<S> | Content<S>[]): VNode<S> => {
+  const stuff = Array.isArray(content)
+    ? content.map(contentNode)
+    : contentNode(content)
+  return h("div", { class: classProp }, stuff)
+}
