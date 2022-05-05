@@ -12,7 +12,7 @@ import type {
 export type {
   ActionWithPayload,
   Content,
-  Contents,
+  // Contents,
   CustomProps,
   Effecter,
   Reaction,
@@ -22,6 +22,8 @@ export type {
   Transform,
   View,
   ViewComponent,
+  ViewVista,
+  Vista,
 }
 
 // -----------------------------------------------------------------------------
@@ -29,7 +31,7 @@ export type {
 type ActionWithPayload<S, P = any> = [action: Action<S, P>, payload: P]
 
 type Content<S> = number | string | MaybeVNode<S>
-type Contents<S> = Content<S> | View<S> | (Content<S> | View<S>)[]
+// type Contents<S> = Content<S> | View<S> | (Content<S> | View<S>)[]
 
 type CustomProps<T, S, P> = CustomPayloads<S, P> & T
 
@@ -56,3 +58,7 @@ type ViewComponent<S, P> = <X>(
   content: MaybeVNode<S>[]
 ) => MaybeVNode<S>
 // Credit: https://github.com/jorgebucaran/hyperapp/discussions/1052#discussioncomment-630744
+
+type ViewVista<S> = (state: S) => MaybeVNode<S> | MaybeVNode<S>[]
+
+type Vista<S> = Content<S> | ViewVista<S> | Vista<S>[]
