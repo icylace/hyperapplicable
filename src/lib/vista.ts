@@ -1,7 +1,7 @@
 import { MaybeVNode, VNode, text } from "hyperapp"
 import type { Content, Vista, VistaView } from "./types"
 
-export { contentView, isContent, isVNode, vista }
+export { contentView, isVista, isVNode, vista }
 
 // -----------------------------------------------------------------------------
 
@@ -15,9 +15,10 @@ const contentView = <S>(view: Content<S> | VistaView<S>) => (state: S): MaybeVNo
     : [view]
 }
 
-const isContent = <S>(x: unknown): x is Content<S> =>
+const isVista = <S>(x: unknown): x is Vista<S> =>
   x == null
     || typeof x === "boolean"
+    || typeof x === "function"
     || typeof x === "number"
     || typeof x === "string"
     || isVNode(x)
