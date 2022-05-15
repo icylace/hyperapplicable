@@ -24,7 +24,7 @@ const isVista = <S>(x: unknown): x is Vista<S> =>
     || isVNode(x)
 
 const isVNode = <S>(x: unknown): x is VNode<S> =>
-  x != null && typeof x === "object" && "node" in x
+  typeof x === "object" && x != null && "node" in x
 
 const vista = <S>(views: Vista<S>) => (state: S): MaybeVNode<S>[] =>
   !Array.isArray(views)
