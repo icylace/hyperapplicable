@@ -46,8 +46,8 @@ type StateWithEffects<S, P = any> = [state: S, ...effects: Effect<S, P>[]]
 // A subscriber reacts to subscription updates.
 type Subscriber<S, P> = (dispatch: Dispatch<S>, payload: P) => void | Unsubscribe
 
-// A transform carries out the transition from one state to another.
-type Transform<S, P = any> = (state: StateFormat<S>, payload: P) => StateFormat<S>
+// A transform carries out a transition from one state to another.
+type Transform<S> = (state: StateFormat<S>) => StateFormat<S>
 
 type View<S> = (state: S) => MaybeVNode<S>
 

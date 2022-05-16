@@ -1,5 +1,4 @@
 export * from "./box"
-export * from "./handleWith"
 export * from "./isAction"
 export * from "./next"
 export * from "./readout"

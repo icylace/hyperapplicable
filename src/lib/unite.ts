@@ -5,29 +5,24 @@ export { unite }
 // -----------------------------------------------------------------------------
 
 // Transforms state while preserving/expanding the list of effects to run.
-const unite = <S, P = any>(
-  stateForm: StateFormat<S>,
-  transformation: Transform<S> | [Transform<S>, P],
-): StateFormat<S> => {
-  let transform, payload
+const unite = <S>(stateForm: StateFormat<S>, ...transforms: Transform<S>[]): StateFormat<S> => {
+  let result = stateForm
+  for (let i = 0; i < transforms.length; ++i) {
+    const transform = transforms[i]
 
-  if (Array.isArray(transformation)) {
-    transform = transformation[0]
-    payload = transformation[1]
-  } else {
-    transform = transformation
+    if (!Array.isArray(result)) {
+      result = transform(result)
+    } else {
+      const [state, ...effects] = result
+      const nextStateForm = transform(state)
+
+      if (!Array.isArray(nextStateForm)) {
+        result = [nextStateForm, ...effects]
+      } else {
+        const [nextState, ...nextEffects] = nextStateForm
+        result = [nextState, ...effects, ...nextEffects]
+      }
+    }
   }
-
-  if (!Array.isArray(stateForm)) {
-    return transform(stateForm, payload)
-  }
-
-  const [state, ...effects] = stateForm
-  const nextStateForm = transform(state, payload)
-  if (!Array.isArray(nextStateForm)) {
-    return [nextStateForm, ...effects]
-  }
-
-  const [nextState, ...nextEffects] = nextStateForm
-  return [nextState, ...effects, ...nextEffects]
+  return result
 }
