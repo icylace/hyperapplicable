@@ -7,6 +7,7 @@ export { unite }
 // Transforms state while preserving/expanding the list of effects to run.
 const unite = <S>(stateForm: StateFormat<S>, ...transforms: Transform<S>[]): StateFormat<S> => {
   let result = stateForm
+
   for (let i = 0; i < transforms.length; ++i) {
     const transform = transforms[i]
 
