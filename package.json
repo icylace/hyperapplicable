@@ -1,6 +1,6 @@
 {
   "name": "hyperapplicable",
-  "version": "0.7.1",
+  "version": "0.8.0",
   "description": "A utility library for Hyperapp.",
   "keywords": [
     "eyepiece"
