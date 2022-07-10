@@ -1,5 +1,6 @@
 export * from "./box"
 export * from "./isAction"
+export * from "./log"
 export * from "./next"
 export * from "./readout"
 export * from "./types"
