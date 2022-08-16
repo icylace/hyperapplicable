@@ -1,5 +1,5 @@
 import { MaybeVNode, VNode, text } from "hyperapp"
-import type { Content, Vista, VistaView } from "./types"
+import type { Content, Vista, VistaView } from "../types"
 
 export { contentView, isVista, isVNode, vista }
 
