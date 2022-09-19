@@ -21,6 +21,7 @@ const isVista = <S>(x: unknown): x is Vista<S> =>
     || typeof x === "function"
     || typeof x === "number"
     || typeof x === "string"
+    || Array.isArray(x)
     || isVNode(x)
 
 const isVNode = <S>(x: unknown): x is VNode<S> =>
