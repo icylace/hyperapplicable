@@ -165,8 +165,9 @@ task:reset() {
 
 task:test() {
   # TODO:
-  return
   # npx jest
+  echo
+  echo "No tests yet..."
 }
 
 # ------------------------------------------------------------------------------
