@@ -7,6 +7,7 @@ import type {
   Effect,
   MaybeVNode,
   Unsubscribe,
+  VNode,
 } from "hyperapp"
 
 export type {
@@ -14,6 +15,7 @@ export type {
   Content,
   CustomProps,
   Effecter,
+  MaybeView,
   Reaction,
   StateFormat,
   StateWithEffects,
@@ -36,6 +38,8 @@ type CustomProps<T, S, P> = CustomPayloads<S, P> & T
 // An effecter is where side effects and any additional dispatching may occur.
 type Effecter<S, P> = (dispatch: Dispatch<S>, payload: P) => void | Promise<void>
 
+type MaybeView<S> = (state: S) => MaybeVNode<S>
+
 type Reaction<S, P = any> = Action<S, P> | ActionWithPayload<S, P>
 
 type StateFormat<S, P = any> = S | StateWithEffects<S, P>
@@ -49,7 +53,7 @@ type Subscriber<S, P> = (dispatch: Dispatch<S>, payload: P) => void | Unsubscrib
 // A transform carries out a transition from one state to another.
 type Transform<S, P = any> = (state: S, payload?: P) => StateFormat<S, P>
 
-type View<S> = (state: S) => MaybeVNode<S>
+type View<S> = (state: S) => VNode<S>
 
 type ViewComponent<S, P> = <X>(
   props: CustomPayloads<S, X> & P,
