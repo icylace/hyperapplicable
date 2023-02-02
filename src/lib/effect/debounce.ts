@@ -1,4 +1,4 @@
-import type { Action, Dispatch, Effect } from "hyperapp"
+import { Action, Dispatch, Effect } from "hyperapp"
 
 export { debounce }
 
@@ -9,6 +9,9 @@ type Debounce<S> = {
   delay: number
   payload: unknown
 }
+
+const debounce = <S>(action: Action<S>, delay: number, payload?: unknown): Effect<S, Debounce<S>> =>
+  [runDebounce, { action, delay, payload }]
 
 // https://dev.to/monaye/refactor-davidwalsh-s-debounce-function-5afc
 
@@ -23,6 +26,3 @@ const runDebounce = <S>(dispatch: Dispatch<S>, props: Debounce<S>): void => {
     props.delay
   )
 }
-
-const debounce = <S>(action: Action<S>, delay: number, payload?: unknown): Effect<S, Debounce<S>> =>
-  [runDebounce, { action, delay, payload }]

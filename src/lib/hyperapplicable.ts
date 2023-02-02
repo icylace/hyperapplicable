@@ -1,6 +1,7 @@
 export * from "./effect/debounce"
 export * from "./effect/log"
 export * from "./effect/next"
+export * from "./effect/nextFrame"
 export * from "./state/unite"
 export * from "./view/box"
 export * from "./view/readout"

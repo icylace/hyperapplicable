@@ -1,6 +1,6 @@
 // Convenience types.
 
-import type {
+import {
   Action,
   CustomPayloads,
   Dispatch,

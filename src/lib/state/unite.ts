@@ -1,4 +1,4 @@
-import type { StateFormat, Transform } from "../types"
+import { StateFormat, Transform } from "../types"
 
 export { unite }
 
