@@ -11,6 +11,6 @@ const runNextFrame = <S>(dispatch: Dispatch<S>, props: any): void => {
   window.requestAnimationFrame(() => {
     const newState = props.f(...props.args)
     if (newState instanceof Error) throw newState
-    dispatch((state) => newState == null ? state : newState, newState)
+    dispatch((state) => newState == null ? state : newState)
   })
 }
