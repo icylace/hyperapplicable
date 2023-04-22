@@ -2,14 +2,16 @@ import { MaybeVNode, VNode, text } from "hyperapp"
 
 import { Content, Vista, VistaView } from "../types"
 
-export const contentView = <S>(view: Content<S> | VistaView<S>) => (state: S): MaybeVNode<S>[] => {
-  if (typeof view === "function") {
-    const x = view(state)
-    return Array.isArray(x) ? x : [x]
+export const contentView = <S>(view: Content<S> | VistaView<S>) => {
+  return (state: S): MaybeVNode<S>[] => {
+    if (typeof view === "function") {
+      const x = view(state)
+      return Array.isArray(x) ? x : [x]
+    }
+    return (typeof view === "number" || typeof view === "string")
+      ? [text(view)]
+      : [view]
   }
-  return (typeof view === "number" || typeof view === "string")
-    ? [text(view)]
-    : [view]
 }
 
 export const isVista = <S>(x: unknown): x is Vista<S> =>

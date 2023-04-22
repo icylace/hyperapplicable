@@ -1,7 +1,10 @@
 import { StateFormat, Transform } from "../types"
 
 // Transforms state while preserving/expanding the list of effects to run.
-export const unite = <S>(stateForm: StateFormat<S>, ...transforms: Transform<S>[]): StateFormat<S> => {
+export const unite = <S>(
+  stateForm: StateFormat<S>,
+  ...transforms: Transform<S>[]
+): StateFormat<S> => {
   let result = stateForm
 
   for (let i = 0; i < transforms.length; ++i) {

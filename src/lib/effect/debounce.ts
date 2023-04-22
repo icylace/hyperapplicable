@@ -10,8 +10,13 @@ type Debounce<S> = {
 
 let timerID: number
 
-export const debounce = <S>(action: Action<S>, delay: number, payload?: unknown): Effect<S, Debounce<S>> =>
-  [runDebounce, { action, delay, payload }]
+export const debounce = <S>(
+  action: Action<S>,
+  delay: number,
+  payload?: unknown
+): Effect<S, Debounce<S>> => {
+  return [runDebounce, { action, delay, payload }]
+}
 
 const runDebounce = <S>(dispatch: Dispatch<S>, props: Debounce<S>): void => {
   clearTimeout(timerID)
