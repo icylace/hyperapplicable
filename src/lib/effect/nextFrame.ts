@@ -1,10 +1,6 @@
 import { Dispatch, Effect } from "hyperapp"
 
-export { nextFrame }
-
-// -----------------------------------------------------------------------------
-
-const nextFrame = <S>(f: Function, ...args: any[]): Effect<S> =>
+export const nextFrame = <S>(f: Function, ...args: any[]): Effect<S> =>
   [runNextFrame, { f, args }]
 
 const runNextFrame = <S>(dispatch: Dispatch<S>, props: any): void => {

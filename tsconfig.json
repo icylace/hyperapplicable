@@ -43,6 +43,9 @@
 
     "assumeChangesOnlyAffectDirectDependencies": true,    /* https://www.typescriptlang.org/v2/en/tsconfig#assumeChangesOnlyAffectDirectDependencies */
     "noEmitOnError": true,                    /* https://www.typescriptlang.org/tsconfig#noEmitOnError */
-    "resolveJsonModule": true                 /* https://www.typescriptlang.org/tsconfig#resolveJsonModule */
+    "resolveJsonModule": true,                 /* https://www.typescriptlang.org/tsconfig#resolveJsonModule */
+
+    "allowImportingTsExtensions": true,    /* https://www.typescriptlang.org/tsconfig#allowImportingTsExtensions*/
+    "noEmit": true                         /* https://www.typescriptlang.org/tsconfig#noEmit */
   }
 }

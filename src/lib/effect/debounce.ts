@@ -1,8 +1,6 @@
 import { Action, Dispatch, Effect } from "hyperapp"
 
-export { debounce }
-
-// -----------------------------------------------------------------------------
+// https://dev.to/monaye/refactor-davidwalsh-s-debounce-function-5afc
 
 type Debounce<S> = {
   action: Action<S>
@@ -10,12 +8,10 @@ type Debounce<S> = {
   payload: unknown
 }
 
-const debounce = <S>(action: Action<S>, delay: number, payload?: unknown): Effect<S, Debounce<S>> =>
-  [runDebounce, { action, delay, payload }]
-
-// https://dev.to/monaye/refactor-davidwalsh-s-debounce-function-5afc
-
 let timerID: number
+
+export const debounce = <S>(action: Action<S>, delay: number, payload?: unknown): Effect<S, Debounce<S>> =>
+  [runDebounce, { action, delay, payload }]
 
 const runDebounce = <S>(dispatch: Dispatch<S>, props: Debounce<S>): void => {
   clearTimeout(timerID)

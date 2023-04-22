@@ -2,11 +2,7 @@ import { MaybeVNode, VNode, text } from "hyperapp"
 
 import { Content, Vista, VistaView } from "../types"
 
-export { contentView, isVista, isVNode, vista }
-
-// -----------------------------------------------------------------------------
-
-const contentView = <S>(view: Content<S> | VistaView<S>) => (state: S): MaybeVNode<S>[] => {
+export const contentView = <S>(view: Content<S> | VistaView<S>) => (state: S): MaybeVNode<S>[] => {
   if (typeof view === "function") {
     const x = view(state)
     return Array.isArray(x) ? x : [x]
@@ -16,7 +12,7 @@ const contentView = <S>(view: Content<S> | VistaView<S>) => (state: S): MaybeVNo
     : [view]
 }
 
-const isVista = <S>(x: unknown): x is Vista<S> =>
+export const isVista = <S>(x: unknown): x is Vista<S> =>
   x == null
     || typeof x === "boolean"
     || typeof x === "function"
@@ -25,10 +21,10 @@ const isVista = <S>(x: unknown): x is Vista<S> =>
     || Array.isArray(x)
     || isVNode(x)
 
-const isVNode = <S>(x: unknown): x is VNode<S> =>
+export const isVNode = <S>(x: unknown): x is VNode<S> =>
   typeof x === "object" && x != null && "node" in x
 
-const vista = <S>(views: Vista<S>) => (state: S): MaybeVNode<S>[] =>
+export const vista = <S>(views: Vista<S>) => (state: S): MaybeVNode<S>[] =>
   !Array.isArray(views)
     ? contentView(views)(state)
     : views.reduce((nodes: MaybeVNode<S>[], view: Vista<S>) => [

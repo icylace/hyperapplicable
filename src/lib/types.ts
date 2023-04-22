@@ -10,57 +10,38 @@ import {
   VNode,
 } from "hyperapp"
 
-export type {
-  ActionWithPayload,
-  Content,
-  CustomProps,
-  Effecter,
-  MaybeView,
-  Reaction,
-  StateFormat,
-  StateWithEffects,
-  Subscriber,
-  Transform,
-  View,
-  ViewComponent,
-  Vista,
-  VistaView,
-}
+export type ActionWithPayload<S, P = any> = [action: Action<S, P>, payload: P]
 
-// -----------------------------------------------------------------------------
+export type Content<S> = number | string | MaybeVNode<S>
 
-type ActionWithPayload<S, P = any> = [action: Action<S, P>, payload: P]
-
-type Content<S> = number | string | MaybeVNode<S>
-
-type CustomProps<T, S, P> = CustomPayloads<S, P> & T
+export type CustomProps<T, S, P> = CustomPayloads<S, P> & T
 
 // An effecter is where side effects and any additional dispatching may occur.
-type Effecter<S, P> = (dispatch: Dispatch<S>, payload: P) => void | Promise<void>
+export type Effecter<S, P> = (dispatch: Dispatch<S>, payload: P) => void | Promise<void>
 
-type MaybeView<S> = (state: S) => MaybeVNode<S>
+export type MaybeView<S> = (state: S) => MaybeVNode<S>
 
-type Reaction<S, P = any> = Action<S, P> | ActionWithPayload<S, P>
+export type Reaction<S, P = any> = Action<S, P> | ActionWithPayload<S, P>
 
-type StateFormat<S, P = any> = S | StateWithEffects<S, P>
+export type StateFormat<S, P = any> = S | StateWithEffects<S, P>
 
 // State can be associated with a list of effects to run.
-type StateWithEffects<S, P = any> = [state: S, ...effects: Effect<S, P>[]]
+export type StateWithEffects<S, P = any> = [state: S, ...effects: Effect<S, P>[]]
 
 // A subscriber reacts to subscription updates.
-type Subscriber<S, P> = (dispatch: Dispatch<S>, payload: P) => void | Unsubscribe
+export type Subscriber<S, P> = (dispatch: Dispatch<S>, payload: P) => void | Unsubscribe
 
 // A transform carries out a transition from one state to another.
-type Transform<S, P = any> = (state: S, payload?: P) => StateFormat<S, P>
+export type Transform<S, P = any> = (state: S, payload?: P) => StateFormat<S, P>
 
-type View<S> = (state: S) => VNode<S>
+export type View<S> = (state: S) => VNode<S>
 
-type ViewComponent<S, P> = <X>(
+export type ViewComponent<S, P> = <X>(
   props: CustomPayloads<S, X> & P,
   content: MaybeVNode<S>[]
 ) => MaybeVNode<S>
 // Credit: https://github.com/jorgebucaran/hyperapp/discussions/1052#discussioncomment-630744
 
-type Vista<S> = Content<S> | VistaView<S> | Vista<S>[]
+export type Vista<S> = Content<S> | VistaView<S> | Vista<S>[]
 
-type VistaView<S> = (state: S) => MaybeVNode<S> | MaybeVNode<S>[]
+export type VistaView<S> = (state: S) => MaybeVNode<S> | MaybeVNode<S>[]
